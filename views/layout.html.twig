@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fayme- {% block title %}{% endblock %}</title>
+    <link href="{{ app.request.basepath }}/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ app.request.basepath }}/css/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="{{ app.request.basepath }}/css/drunken-parrot.css" rel="stylesheet">
+    <link href="{{ app.request.basepath }}/css/fonts2.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ app.request.basepath }}/images/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600,600i,700" rel="stylesheet">
+</head>
+
+<body>
+    <div class="jumbotron">
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#navbar-collapse-target">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('home') }}"><span class="glyphicon glyphicon-home"
+                                                                        aria-hidden="true"></span> Fayme</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-target">
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span> Bienvenue, <span id="idlogin" value="{{ app.user.username }}">{{ app.user.username }}</span> 
+                                <b class="glyphicon glyphicon-menu-down"></b></a>
+                            <ul class="dropdown-menu">
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li><a
+                                                href="{{ path('admin') }}"><span class="glyphicon glyphicon-cog"></span>
+                                            Administration</a></li>
+                                {% endif %}
+                                <li><a href="{{ path('profil') }}"><span class="glyphicon glyphicon-pencil"></span> Profil</a></li>
+                                <li><a href="{{ path('logout') }}"><span class="glyphicon glyphicon-off"></span> Deconnexion</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span> Non connecté <b
+                                        class="glyphicon glyphicon-menu-down"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('login') }}"><span class="glyphicon glyphicon-off"></span> Connexion</a></li>
+                                <li><a href="{{ path('inscription') }}"><span class="glyphicon glyphicon-pencil"></span> Inscription</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <!-- /.container -->
+    </nav>
+    {% autoescape %}
+        <div id="content">{% block content %}{% endblock %}</div>
+    {% endautoescape %}
+</div>
+        </div>
+
+
+<!-- jQuery -->
+
+<script src="{{ app.request.basepath }}/lib/jquery/jquery.min.js"></script>
+<!-- JavaScript Boostrap plugin -->
+<script src="{{ app.request.basepath }}/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ app.request.basepath }}/js/Panier.js"></script>
+<script src="{{ app.request.basepath }}/js/bootstrap-datepicker.js"></script>
+<script src="{{ app.request.basepath }}/js/bootstrap-checkbox.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    $(':checkbox').checkboxpicker({
+        html: true,
+        offLabel: '<span class="glyphicon glyphicon-remove">',
+        onLabel: '<span class="glyphicon glyphicon-ok">'
+    });
+</script>
+</body>
+
+</html>

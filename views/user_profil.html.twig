@@ -1,0 +1,67 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+	<div class="home-six-style">
+                   
+
+		<!-- Hero section start -->
+		<section class="hero-section">
+			<div class="container-fluid text-center">
+				<img src="{{ app.request.basepath }}/images/hero.jpg" alt="">
+				<div class="hero-text">
+                    <p>{{ app.user.prenom }}</p>
+					<p>{{ app.user.description}}. Je suis un chomeur<br>j'aime la CAF et le Pole Emploi.</p>
+				</div>
+				<div class="social-links">
+					<a href=""><i class="fa fa-pinterest"></i></a>
+					<a href=""><i class="fa fa-linkedin"></i></a>
+					<a href=""><i class="fa fa-instagram"></i></a>
+					<a href=""><i class="fa fa-facebook"></i></a>
+					<a href=""><i class="fa fa-twitter"></i></a>
+				</div>
+			</div>
+		</section>
+		<!-- Hero section end -->
+
+		<!-- Info section start -->
+		<div class="info-section">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-8 offset-xl-2 container-warp">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="hero-info mb-4 mb-md-0">
+									<ul>
+										<li><span>Ville</span>{{ app.user.ville}}</li>
+										<li><span>Job</span>{{ app.user.categorie}}</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="hero-info">
+									<ul>
+										<li><span>E-mail</span>{{ app.user.mail}}</li>
+										<li><span>Phone </span>+43 5266 22 345</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Info section end -->
+        
+        
+
+
+
+
+    {% endblock %}

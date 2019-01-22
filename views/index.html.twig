@@ -1,0 +1,36 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+<div class="jumbotron">
+
+          {% for user in users %}
+    <div class="row">
+  <div class="column">
+    <div class="card">
+       
+                   <button type="button" href="{{ path('usrpage') }}" class="btn "  data-toggle="modal" data-target="#user-modal{{user.id}}">
+<img class="img-responsive"  style="border-radius: 50px; border:4px solid white; width:300px; height:300px; box-shadow: 1px 1px 10px #555;" src="{{ app.request.basepath }}/images/{{ user.photo }}" />
+                        </button>
+          {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+      <div class="container">
+           <a class="navbar-brand" href="{{ path('usrpage') }}">{{ user.username }}</a>
+      </div>
+        {% else %}
+                   <a class="navbar-brand" href="{{ path('login') }}">{{ user.username }}</a>
+
+      
+        {% endif %}
+        
+    </div>
+  </div>
+              
+          {% endfor %}
+</div>
+{% endblock %}

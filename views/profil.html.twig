@@ -1,0 +1,125 @@
+{% extends "layout.html.twig" %} {% set usernMenu = true %} {% block title %}Informations personnelles{% endblock %}
+{% block content %}
+
+<h2 class="text-center">{{ block('title') }}</h2>
+
+{% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-danger">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+<div class="well">
+    <form class=" form-horizontal" role="form" method="post">
+{% if userForm %}
+        {{ form_start(userForm) }}
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-1 control-label">Nom</label>
+            <div class="col-sm-5 col-md-4 ">
+            {{ form_errors(userForm.nom) }}
+                {{ form_widget(userForm.nom, { 'attr':  {
+                    'rows': '4',
+                    'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-1 control-label">Prénom</label>
+            <div class="col-sm-5 col-md-4 ">
+            {{ form_errors(userForm.prenom) }}
+                {{ form_widget(userForm.prenom, { 'attr':  {
+                    'rows': '4',
+                    'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-1 control-label">Description</label>
+            <div class="col-sm-6 col-md-4 ">
+            {{ form_errors(userForm.description) }}
+                {{ form_widget(userForm.description, { 'attr':  {
+                    'rows': '4',
+                    'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-1 control-label">Code postal</label>
+            <div class="col-sm-2 col-md-4">
+            {{ form_errors(userForm.codePostal) }}
+                {{ form_widget(userForm.codePostal, { 'attr':  {
+                    'rows': '4',
+                    'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-1 control-label">Ville</label>
+            <div class="col-sm-5 col-md-4 ">
+            {{ form_errors(userForm.ville) }}
+                {{ form_widget(userForm.ville, { 'attr':  {
+                    'rows': '4',
+                    'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-1 control-label">E-mail</label>
+            <div class="col-sm-5 col-md-4 ">
+            {{ form_errors(userForm.mail) }}
+                {{ form_widget(userForm.mail, { 'attr':  {
+                    'rows': '4',
+                    'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-1 control-label">Nom d'utilisateur</label>
+            <div class="col-sm-2 col-md-4 ">
+            {{ form_errors(userForm.username) }}
+
+                {{ form_widget(userForm.username, { 'attr':  {
+                    'rows': '4',
+                    'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+        <label class="col-sm-3 col-sm-offset-1 control-label">Mot de passe</label>
+        <div class="col-sm-5 col-md-3">
+            {{ form_widget(userForm.password.first, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 col-sm-offset-1 control-label">Répéter le mot de passe</label>
+        <div class="col-sm-5 col-md-3">
+            {{ form_widget(userForm.password.second, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+         <div class="form-group">
+        <label class="col-sm-3 col-sm-offset-1 control-label">Catégorie</label>
+        <div class="col-sm-5 col-md-3">
+            {{ form_widget(userForm.categorie, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+        <div class="form-group">
+            <div class="col-sm-2 col-sm-offset-4 col-md-4 col-md-offset-4">
+                <input type="submit" class="btn btn-primary" value="Mettre à jour" />
+            </div>
+        </div>
+    {{ form_end(userForm) }}
+    </form>
+
+</div>
+{% endif %}
+{% endblock %}

@@ -35,6 +35,23 @@ $app->match('/profil', "fayme\Controller\HomeController::profilAction" )->bind('
 // Profil utilisateur
 $app->match('/usrpage', "fayme\Controller\HomeController::usrpageAction" )->bind('usrpage');
 
+// API : get all users
+$app->get('/api/users', "fayme\Controller\ApiController::getUsersAction")
+->bind('api_users');
+
+// API : get a user
+$app->get('/api/user/{id}', "fayme\Controller\ApiController::getUserAction")
+->bind('user');
+
+// API : create a user
+$app->post('/api/user', "fayme\Controller\ApiController::addUserAction")
+->bind('api_user_add');
+
+// API : remove a user
+$app->delete('/api/user/{id}', "fayme\Controller\ApiController::deleteUserAction")
+->bind('api_user_delete');
+
+
 //
 //
 // API : get all users
